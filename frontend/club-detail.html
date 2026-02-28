@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Club details, announcements, and membership.">
+    <title>Club Details — CampusHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <div class="brand-icon">🎓</div>
+                <span>CampusHub</span>
+            </a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="clubs.html" class="active">Clubs</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+            <div class="navbar-auth" id="navAuth">
+                <div id="loginBtnNav">
+                    <a href="login.html" class="btn btn-accent btn-sm">Sign In</a>
+                </div>
+                <div id="userMenuNav" class="hidden" style="display:none;">
+                    <span id="navUserName" style="color:var(--neutral-300);font-weight:500;margin-right:8px;"></span>
+                    <img id="navAvatar" class="navbar-avatar" src="" alt="avatar">
+                    <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Club Detail -->
+    <div style="padding-top:calc(var(--navbar-height) + var(--space-2xl));">
+        <div class="container">
+            <a href="clubs.html"
+                style="display:inline-flex;align-items:center;gap:var(--space-sm);color:var(--neutral-400);margin-bottom:var(--space-lg);font-size:0.95rem;">
+                ← Back to Clubs
+            </a>
+
+            <!-- Club Header -->
+            <div class="glass-card-static animate-fade-in"
+                style="display:flex;align-items:center;gap:var(--space-xl);margin-bottom:var(--space-2xl);">
+                <div class="club-card-logo" id="clubDetailLogo"
+                    style="width:100px;height:100px;font-size:3rem;flex-shrink:0;">🏢</div>
+                <div style="flex:1;">
+                    <h1 id="clubDetailName" style="font-size:1.8rem;margin-bottom:var(--space-sm);">Loading...</h1>
+                    <p id="clubDetailDescription" style="color:var(--neutral-400);margin-bottom:var(--space-md);">—</p>
+                    <div class="flex items-center gap-lg">
+                        <span class="club-card-members" id="clubDetailMembers">👥 0 Members</span>
+                        <span id="clubDetailCategory" class="badge badge-info">—</span>
+                    </div>
+                </div>
+                <button class="btn btn-accent btn-lg" id="clubJoinBtn" onclick="toggleClubMembership()">
+                    Join Club
+                </button>
+            </div>
+
+            <!-- Tabs -->
+            <div class="tabs">
+                <button class="tab-btn active" onclick="showClubDetailTab('announcements', this)">📢
+                    Announcements</button>
+                <button class="tab-btn" onclick="showClubDetailTab('members', this)">👥 Members</button>
+            </div>
+
+            <!-- Announcements Tab -->
+            <div class="tab-content active" id="tab-announcements">
+                <div id="clubAnnouncementsList">
+                    <div class="empty-state">
+                        <span class="empty-icon">📢</span>
+                        <h3>No announcements yet</h3>
+                        <p>Check back later for updates from this club.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Members Tab -->
+            <div class="tab-content" id="tab-members">
+                <div id="clubMembersList">
+                    <div class="spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">
+                <span>© 2026 CampusHub. All rights reserved.</span>
+                <span>Built with ❤️ for students</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/clubs.js"></script>
+</body>
+
+</html>

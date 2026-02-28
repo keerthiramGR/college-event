@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="College Event & Club Hub — Discover events, join clubs, and connect with your campus community.">
+    <title>College Event & Club Hub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- ============================================================
+         Navigation Bar
+         ============================================================ -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <div class="brand-icon">🎓</div>
+                <span>CampusHub</span>
+            </a>
+
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="clubs.html">Clubs</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+
+            <div class="navbar-auth" id="navAuth">
+                <!-- Shown when NOT logged in -->
+                <div id="loginBtnNav">
+                    <a href="login.html" class="btn btn-accent btn-sm">Sign In</a>
+                </div>
+                <!-- Shown when logged in (hidden by default) -->
+                <div id="userMenuNav" class="hidden" style="display:none;">
+                    <span id="navUserName" style="color:var(--neutral-300);font-weight:500;margin-right:8px;"></span>
+                    <img id="navAvatar" class="navbar-avatar" src="" alt="avatar">
+                    <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- ============================================================
+         Hero Section
+         ============================================================ -->
+    <section class="hero" id="hero">
+        <div class="hero-content container">
+            <div class="hero-badge">
+                ✨ Your Campus, One Platform
+            </div>
+            <h1>Discover Events.<br>Join Clubs.<br>Connect & Grow.</h1>
+            <p>The ultimate platform for college students to explore events, join clubs, and stay connected with everything happening on campus.</p>
+            <div class="hero-buttons">
+                <a href="events.html" class="btn btn-accent btn-lg">Explore Events</a>
+                <a href="clubs.html" class="btn btn-outline btn-lg">Browse Clubs</a>
+            </div>
+            <div class="hero-stats">
+                <div class="hero-stat animate-fade-in-up stagger-1">
+                    <span class="stat-number" id="heroEventsCount">50+</span>
+                    <span class="stat-label">Events</span>
+                </div>
+                <div class="hero-stat animate-fade-in-up stagger-2">
+                    <span class="stat-number" id="heroClubsCount">20+</span>
+                    <span class="stat-label">Active Clubs</span>
+                </div>
+                <div class="hero-stat animate-fade-in-up stagger-3">
+                    <span class="stat-number" id="heroStudentsCount">1000+</span>
+                    <span class="stat-label">Students</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Upcoming Events Section
+         ============================================================ -->
+    <section class="section" id="upcomingEvents">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Upcoming <span class="highlight">Events</span></h2>
+                <p>Don't miss out on the latest happenings around campus</p>
+            </div>
+            <div class="card-grid" id="upcomingEventsGrid">
+                <!-- Event cards populated by JS -->
+                <!-- Fallback static cards for demo -->
+                <div class="event-card animate-fade-in-up stagger-1">
+                    <div class="event-card-image" style="background:linear-gradient(135deg,#6366f1,#3d54a8);display:flex;align-items:center;justify-content:center;font-size:3rem;">💻</div>
+                    <div class="event-card-body">
+                        <span class="event-card-category technical">Technical</span>
+                        <h3>Hackathon 2026</h3>
+                        <p>Build innovative solutions in 24 hours. Open to all departments.</p>
+                        <div class="event-card-meta">
+                            <span>📅 Mar 15, 2026</span>
+                            <span>📍 Main Auditorium</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card animate-fade-in-up stagger-2">
+                    <div class="event-card-image" style="background:linear-gradient(135deg,#ec4899,#a855f7);display:flex;align-items:center;justify-content:center;font-size:3rem;">🎭</div>
+                    <div class="event-card-body">
+                        <span class="event-card-category cultural">Cultural</span>
+                        <h3>Annual Cultural Fest</h3>
+                        <p>A vibrant celebration of art, music, dance, and creativity.</p>
+                        <div class="event-card-meta">
+                            <span>📅 Mar 20, 2026</span>
+                            <span>📍 Open Grounds</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="event-card animate-fade-in-up stagger-3">
+                    <div class="event-card-image" style="background:linear-gradient(135deg,#10b981,#059669);display:flex;align-items:center;justify-content:center;font-size:3rem;">🏆</div>
+                    <div class="event-card-body">
+                        <span class="event-card-category sports">Sports</span>
+                        <h3>Inter-College Cricket Tournament</h3>
+                        <p>Compete against top college teams. Registrations open now!</p>
+                        <div class="event-card-meta">
+                            <span>📅 Apr 5, 2026</span>
+                            <span>📍 Sports Complex</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top:var(--space-2xl);">
+                <a href="events.html" class="btn btn-primary btn-lg">View All Events →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Featured Clubs Section
+         ============================================================ -->
+    <section class="section" id="featuredClubs" style="background:rgba(15,21,53,0.5);">
+        <div class="container">
+            <div class="section-header reveal">
+                <h2>Featured <span class="highlight">Clubs</span></h2>
+                <p>Find your tribe and make lasting connections</p>
+            </div>
+            <div class="card-grid-3" id="featuredClubsGrid">
+                <!-- Club cards populated by JS -->
+                <!-- Fallback static cards -->
+                <div class="club-card animate-fade-in-up stagger-1">
+                    <div class="club-card-logo">🤖</div>
+                    <h3>Robotics Club</h3>
+                    <p>Build robots, compete in contests, and explore the future of automation.</p>
+                    <div class="club-card-members">👥 120 Members</div>
+                </div>
+                <div class="club-card animate-fade-in-up stagger-2">
+                    <div class="club-card-logo">🎵</div>
+                    <h3>Music Society</h3>
+                    <p>From classical to rock — jam sessions, concerts, and music workshops.</p>
+                    <div class="club-card-members">👥 85 Members</div>
+                </div>
+                <div class="club-card animate-fade-in-up stagger-3">
+                    <div class="club-card-logo">📸</div>
+                    <h3>Photography Club</h3>
+                    <p>Capture moments, learn editing, and participate in photo walks.</p>
+                    <div class="club-card-members">👥 95 Members</div>
+                </div>
+                <div class="club-card animate-fade-in-up stagger-4">
+                    <div class="club-card-logo">💡</div>
+                    <h3>Entrepreneurship Cell</h3>
+                    <p>Pitch ideas, attend startup talks, and build your venture.</p>
+                    <div class="club-card-members">👥 150 Members</div>
+                </div>
+                <div class="club-card animate-fade-in-up stagger-5">
+                    <div class="club-card-logo">🎨</div>
+                    <h3>Art & Design Club</h3>
+                    <p>Sketching, digital art, UI/UX design, and creative workshops.</p>
+                    <div class="club-card-members">👥 70 Members</div>
+                </div>
+                <div class="club-card animate-fade-in-up stagger-5">
+                    <div class="club-card-logo">♟️</div>
+                    <h3>Chess Club</h3>
+                    <p>Strategy meets competition. Weekly matches and tournament prep.</p>
+                    <div class="club-card-members">👥 60 Members</div>
+                </div>
+            </div>
+            <div class="text-center" style="margin-top:var(--space-2xl);">
+                <a href="clubs.html" class="btn btn-primary btn-lg">Explore All Clubs →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         CTA Section
+         ============================================================ -->
+    <section class="section">
+        <div class="container">
+            <div class="glass-card-static text-center" style="padding:var(--space-3xl);">
+                <h2 style="font-size:2rem;margin-bottom:var(--space-md);">Ready to Get Started?</h2>
+                <p style="color:var(--neutral-400);max-width:500px;margin:0 auto var(--space-xl);font-size:1.1rem;">
+                    Sign in with your Google account and start exploring events and clubs today.
+                </p>
+                <a href="login.html" class="btn btn-accent btn-lg">Sign In with Google 🚀</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================================
+         Footer
+         ============================================================ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-brand">
+                        🎓 CampusHub
+                    </div>
+                    <p>Your one-stop platform for college events, clubs, and campus life. Stay connected, stay engaged.</p>
+                </div>
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="events.html">Events</a></li>
+                        <li><a href="clubs.html">Clubs</a></li>
+                        <li><a href="dashboard.html">Dashboard</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Categories</h4>
+                    <ul class="footer-links">
+                        <li><a href="events.html?category=Technical">Technical</a></li>
+                        <li><a href="events.html?category=Cultural">Cultural</a></li>
+                        <li><a href="events.html?category=Sports">Sports</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">campushub@college.edu</a></li>
+                        <li><a href="#">Help & Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>© 2026 CampusHub. All rights reserved.</span>
+                <span>Built with ❤️ for students</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Admin Dashboard — Manage events, clubs, and users.">
+    <title>Admin Dashboard — CampusHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <div class="brand-icon">🎓</div>
+                <span>CampusHub</span>
+            </a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="clubs.html">Clubs</a></li>
+                <li><a href="admin.html" class="active">Admin</a></li>
+            </ul>
+            <div class="navbar-auth" id="navAuth">
+                <div id="loginBtnNav">
+                    <a href="login.html" class="btn btn-accent btn-sm">Sign In</a>
+                </div>
+                <div id="userMenuNav" class="hidden" style="display:none;">
+                    <span id="navUserName" style="color:var(--neutral-300);font-weight:500;margin-right:8px;"></span>
+                    <img id="navAvatar" class="navbar-avatar" src="" alt="avatar">
+                    <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Dashboard Layout -->
+    <div class="dashboard-layout">
+        <!-- Sidebar -->
+        <aside class="dashboard-sidebar" id="dashboardSidebar">
+            <div class="sidebar-section-label">ADMIN PANEL</div>
+            <ul class="sidebar-nav">
+                <li><a href="#" class="active" onclick="showAdminTab('admin-overview', this)"><span
+                            class="nav-icon">📊</span> Overview</a></li>
+                <li><a href="#" onclick="showAdminTab('admin-events', this)"><span class="nav-icon">📅</span> Events</a>
+                </li>
+                <li><a href="#" onclick="showAdminTab('admin-clubs', this)"><span class="nav-icon">🏢</span> Clubs</a>
+                </li>
+                <li><a href="#" onclick="showAdminTab('admin-users', this)"><span class="nav-icon">👤</span> Users</a>
+                </li>
+            </ul>
+            <div class="sidebar-section-label" style="margin-top:var(--space-xl);">LINKS</div>
+            <ul class="sidebar-nav">
+                <li><a href="dashboard.html"><span class="nav-icon">📱</span> Student View</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+            <!-- Header -->
+            <div class="dashboard-header animate-fade-in">
+                <h1>Admin Dashboard 🛡️</h1>
+                <p>Manage events, clubs, and users across your campus.</p>
+            </div>
+
+            <!-- Overview Tab -->
+            <div class="tab-content active" id="tab-admin-overview">
+                <div class="stats-grid animate-fade-in-up">
+                    <div class="stat-card">
+                        <div class="stat-card-icon blue">📅</div>
+                        <div class="stat-card-info">
+                            <h3 id="adminStatEvents">0</h3>
+                            <p>Total Events</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon green">🏢</div>
+                        <div class="stat-card-info">
+                            <h3 id="adminStatClubs">0</h3>
+                            <p>Total Clubs</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon gold">👤</div>
+                        <div class="stat-card-info">
+                            <h3 id="adminStatUsers">0</h3>
+                            <p>Registered Users</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-card-icon purple">📝</div>
+                        <div class="stat-card-info">
+                            <h3 id="adminStatRegistrations">0</h3>
+                            <p>Registrations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <h2 style="margin-bottom:var(--space-lg);font-size:1.3rem;">Recent Events</h2>
+                <div class="glass-card-static" style="overflow-x:auto;">
+                    <table class="data-table" id="adminRecentEventsTable">
+                        <thead>
+                            <tr>
+                                <th>Event</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Registrations</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminRecentEventsBody">
+                            <tr>
+                                <td colspan="5" class="text-center text-muted" style="padding:var(--space-xl);">
+                                    Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Events Management Tab -->
+            <div class="tab-content" id="tab-admin-events">
+                <div class="flex items-center justify-between" style="margin-bottom:var(--space-xl);">
+                    <h2>Manage Events</h2>
+                    <button class="btn btn-accent" onclick="openEventModal()">+ Add Event</button>
+                </div>
+                <div class="glass-card-static" style="overflow-x:auto;">
+                    <table class="data-table" id="adminEventsTable">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Category</th>
+                                <th>Date</th>
+                                <th>Venue</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminEventsBody">
+                            <tr>
+                                <td colspan="6" class="text-center text-muted" style="padding:var(--space-xl);">
+                                    Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Clubs Management Tab -->
+            <div class="tab-content" id="tab-admin-clubs">
+                <div class="flex items-center justify-between" style="margin-bottom:var(--space-xl);">
+                    <h2>Manage Clubs</h2>
+                    <button class="btn btn-accent" onclick="openClubModal()">+ Add Club</button>
+                </div>
+                <div class="glass-card-static" style="overflow-x:auto;">
+                    <table class="data-table" id="adminClubsTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Category</th>
+                                <th>Members</th>
+                                <th>Created</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminClubsBody">
+                            <tr>
+                                <td colspan="5" class="text-center text-muted" style="padding:var(--space-xl);">
+                                    Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Users Tab -->
+            <div class="tab-content" id="tab-admin-users">
+                <h2 style="margin-bottom:var(--space-xl);">Registered Users</h2>
+                <div class="glass-card-static" style="overflow-x:auto;">
+                    <table class="data-table" id="adminUsersTable">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Joined</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminUsersBody">
+                            <tr>
+                                <td colspan="5" class="text-center text-muted" style="padding:var(--space-xl);">
+                                    Loading...</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Event Modal -->
+    <div class="modal-overlay" id="eventModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="eventModalTitle">Add New Event</h2>
+                <button class="modal-close" onclick="closeEventModal()">✕</button>
+            </div>
+            <form id="eventForm" onsubmit="handleEventSubmit(event)">
+                <input type="hidden" id="eventFormId" value="">
+                <div class="form-group">
+                    <label for="eventTitle">Event Title *</label>
+                    <input type="text" class="form-control" id="eventTitle" placeholder="Enter event title" required>
+                </div>
+                <div class="form-group">
+                    <label for="eventDescription">Description</label>
+                    <textarea class="form-control" id="eventDescription" placeholder="Describe the event..."></textarea>
+                </div>
+                <div class="flex gap-md">
+                    <div class="form-group" style="flex:1;">
+                        <label for="eventCategory">Category *</label>
+                        <select class="form-control" id="eventCategory" required>
+                            <option value="Technical">Technical</option>
+                            <option value="Cultural">Cultural</option>
+                            <option value="Sports">Sports</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="eventStatus">Status</label>
+                        <select class="form-control" id="eventStatus">
+                            <option value="upcoming">Upcoming</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="flex gap-md">
+                    <div class="form-group" style="flex:1;">
+                        <label for="eventDate">Date & Time *</label>
+                        <input type="datetime-local" class="form-control" id="eventDate" required>
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="eventVenue">Venue *</label>
+                        <input type="text" class="form-control" id="eventVenue" placeholder="Venue" required>
+                    </div>
+                </div>
+                <div class="flex gap-md">
+                    <div class="form-group" style="flex:1;">
+                        <label for="eventPoster">Poster URL</label>
+                        <input type="url" class="form-control" id="eventPoster" placeholder="https://...">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="eventMaxParticipants">Max Participants</label>
+                        <input type="number" class="form-control" id="eventMaxParticipants" placeholder="Unlimited">
+                    </div>
+                </div>
+                <div class="flex gap-md justify-between" style="margin-top:var(--space-lg);">
+                    <button type="button" class="btn btn-outline" onclick="closeEventModal()">Cancel</button>
+                    <button type="submit" class="btn btn-accent">Save Event</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Club Modal -->
+    <div class="modal-overlay" id="clubModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="clubModalTitle">Add New Club</h2>
+                <button class="modal-close" onclick="closeClubModal()">✕</button>
+            </div>
+            <form id="clubForm" onsubmit="handleClubSubmit(event)">
+                <input type="hidden" id="clubFormId" value="">
+                <div class="form-group">
+                    <label for="clubName">Club Name *</label>
+                    <input type="text" class="form-control" id="clubName" placeholder="Enter club name" required>
+                </div>
+                <div class="form-group">
+                    <label for="clubDescription">Description</label>
+                    <textarea class="form-control" id="clubDescription" placeholder="Describe the club..."></textarea>
+                </div>
+                <div class="flex gap-md">
+                    <div class="form-group" style="flex:1;">
+                        <label for="clubCategory">Category</label>
+                        <input type="text" class="form-control" id="clubCategory" placeholder="e.g., Technology, Arts">
+                    </div>
+                    <div class="form-group" style="flex:1;">
+                        <label for="clubLogo">Logo URL</label>
+                        <input type="url" class="form-control" id="clubLogo" placeholder="https://...">
+                    </div>
+                </div>
+                <div class="flex gap-md justify-between" style="margin-top:var(--space-lg);">
+                    <button type="button" class="btn btn-outline" onclick="closeClubModal()">Cancel</button>
+                    <button type="submit" class="btn btn-accent">Save Club</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+
+</html>

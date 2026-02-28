@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse and discover all college events — Technical, Cultural, and Sports.">
+    <title>Events — CampusHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <div class="brand-icon">🎓</div>
+                <span>CampusHub</span>
+            </a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html" class="active">Events</a></li>
+                <li><a href="clubs.html">Clubs</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+            <div class="navbar-auth" id="navAuth">
+                <div id="loginBtnNav">
+                    <a href="login.html" class="btn btn-accent btn-sm">Sign In</a>
+                </div>
+                <div id="userMenuNav" class="hidden" style="display:none;">
+                    <span id="navUserName" style="color:var(--neutral-300);font-weight:500;margin-right:8px;"></span>
+                    <img id="navAvatar" class="navbar-avatar" src="" alt="avatar">
+                    <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div style="padding-top:calc(var(--navbar-height) + var(--space-2xl));">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="section-header animate-fade-in">
+                <h2 style="font-size:2.2rem;">Campus <span class="highlight">Events</span></h2>
+                <p>Discover, register, and participate in exciting campus activities</p>
+            </div>
+
+            <!-- Filter Bar -->
+            <div class="filter-bar animate-fade-in-up">
+                <div class="search-input">
+                    <input type="text" id="eventSearchInput" placeholder="Search events..." oninput="filterEvents()">
+                </div>
+                <button class="filter-btn active" onclick="setEventFilter('all', this)">All</button>
+                <button class="filter-btn" onclick="setEventFilter('Technical', this)">💻 Technical</button>
+                <button class="filter-btn" onclick="setEventFilter('Cultural', this)">🎭 Cultural</button>
+                <button class="filter-btn" onclick="setEventFilter('Sports', this)">🏆 Sports</button>
+            </div>
+
+            <!-- Events Grid -->
+            <div class="card-grid" id="eventsGrid">
+                <!-- Populated by JS -->
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="eventsEmptyState">
+                <span class="empty-icon">📅</span>
+                <h3>No events found</h3>
+                <p>Try a different search or category filter.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top:var(--space-3xl);">
+        <div class="container">
+            <div class="footer-bottom">
+                <span>© 2026 CampusHub. All rights reserved.</span>
+                <span>Built with ❤️ for students</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/events.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse and join college clubs — find your community at CampusHub.">
+    <title>Clubs — CampusHub</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <div class="brand-icon">🎓</div>
+                <span>CampusHub</span>
+            </a>
+            <ul class="navbar-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="clubs.html" class="active">Clubs</a></li>
+                <li><a href="dashboard.html">Dashboard</a></li>
+            </ul>
+            <div class="navbar-auth" id="navAuth">
+                <div id="loginBtnNav">
+                    <a href="login.html" class="btn btn-accent btn-sm">Sign In</a>
+                </div>
+                <div id="userMenuNav" class="hidden" style="display:none;">
+                    <span id="navUserName" style="color:var(--neutral-300);font-weight:500;margin-right:8px;"></span>
+                    <img id="navAvatar" class="navbar-avatar" src="" alt="avatar">
+                    <button class="btn btn-outline btn-sm" onclick="logout()">Logout</button>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" onclick="toggleMobileMenu()">☰</button>
+        </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div style="padding-top:calc(var(--navbar-height) + var(--space-2xl));">
+        <div class="container">
+            <!-- Page Header -->
+            <div class="section-header animate-fade-in">
+                <h2 style="font-size:2.2rem;">Campus <span class="highlight">Clubs</span></h2>
+                <p>Find your tribe, join a club, and grow together</p>
+            </div>
+
+            <!-- Search -->
+            <div class="filter-bar animate-fade-in-up">
+                <div class="search-input">
+                    <input type="text" id="clubSearchInput" placeholder="Search clubs..." oninput="filterClubs()">
+                </div>
+            </div>
+
+            <!-- Clubs Grid -->
+            <div class="card-grid-3" id="clubsGrid">
+                <!-- Populated by JS -->
+                <div class="spinner"></div>
+            </div>
+
+            <!-- Empty State -->
+            <div class="empty-state hidden" id="clubsEmptyState">
+                <span class="empty-icon">👥</span>
+                <h3>No clubs found</h3>
+                <p>Try a different search term.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer" style="margin-top:var(--space-3xl);">
+        <div class="container">
+            <div class="footer-bottom">
+                <span>© 2026 CampusHub. All rights reserved.</span>
+                <span>Built with ❤️ for students</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/clubs.js"></script>
+</body>
+
+</html>
