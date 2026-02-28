@@ -4,6 +4,14 @@ Main application entry point with CORS, router mounting, and health check.
 """
 
 import os
+import sys
+from pathlib import Path
+
+# Ensure the backend directory is in Python's path (required for Vercel deployment)
+BACKEND_DIR = str(Path(__file__).resolve().parent)
+if BACKEND_DIR not in sys.path:
+    sys.path.insert(0, BACKEND_DIR)
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
