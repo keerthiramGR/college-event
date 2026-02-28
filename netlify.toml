@@ -5,7 +5,7 @@
 # Redirect API calls to backend (Vercel)
 [[redirects]]
   from = "/api/*"
-  to = "https://your-vercel-backend.vercel.app/api/:splat"
+  to = "https://college-eventweb.vercel.app/api/:splat"
   status = 200
   force = true
 
