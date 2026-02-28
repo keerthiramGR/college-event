@@ -6,7 +6,7 @@
 // ============================================================
 // Configuration — Replace with your Google Client ID
 // ============================================================
-const GOOGLE_CLIENT_ID = 'YOUR_GOOGLE_CLIENT_ID.apps.googleusercontent.com';
+const GOOGLE_CLIENT_ID = '36235152326-7mtnrbkn5akb793pjmf58meg65gc6rad.apps.googleusercontent.com';
 
 // ============================================================
 // Session Management
